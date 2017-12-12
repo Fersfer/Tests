@@ -8,7 +8,18 @@ import org.openqa.selenium.WebDriver;
  */
 public class ProfilePage extends BasePageObject<ProfilePage> {
 
+    private By editProfileButton = By.id("editProfile");
+    private By advancedSearchButton = By.id("advanced-search-link");
+
     public ProfilePage(WebDriver driver) {
+
         super(driver);
     }
+
+    public void waitForProfilePageToLoad(){
+        waitForVisibilityOf(editProfileButton);
+        waitForProfilePageToLoad(advancedSearchButton, 10);
+    }
 }
+
+

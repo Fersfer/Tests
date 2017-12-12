@@ -35,5 +35,23 @@ public class BasePageObject<T> {
         return driver.findElement(element);
     }
 
+    protected void waitForVisibilityOf(By locator, Integer... timeOutInSeconds){
+        int attempts = 0;
+        while( attempts < 2) {
+            try {
+                waitFor(ExpectedConditions.visibilityOfElementLocated(locator),timeOutInSeconds.length > 0 ? timeOutInSeconds[0] : null);
+                break;
+            } catch (StaleElementReferenceExcaption e) {
+            }
+            attempts ++;
+            }
+        }
+    private void waitFor(ExpectedCondition<WebElement> condition, Integer timeOutInSeconds ){
+        timeOutInSeconds = timeOutInSeconds != null ? timeOutInSeconds : 30;
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+        wait.until(condition);
+
+    }
+
 
 }
