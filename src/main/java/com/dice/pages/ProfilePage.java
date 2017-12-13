@@ -1,6 +1,7 @@
 package com.dice.pages;
 
 import com.dice.base.BasePageObject;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -18,7 +19,7 @@ public class ProfilePage extends BasePageObject<ProfilePage> {
 
     public void waitForProfilePageToLoad(){
         waitForVisibilityOf(editProfileButton);
-        waitForProfilePageToLoad(advancedSearchButton, 10);
+        waitForVisibilityOf(advancedSearchButton, 10);
     }
 }
 
