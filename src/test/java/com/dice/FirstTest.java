@@ -1,6 +1,6 @@
 package com.dice;
 import com.dice.base.BaseTest;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 /**
  * Created by user on 05/12/17.

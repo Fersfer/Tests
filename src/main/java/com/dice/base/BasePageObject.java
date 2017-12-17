@@ -28,8 +28,9 @@ public class BasePageObject<T> {
     }
 
     protected  void type(String text, By element){
-         find(element).sendKeys();
+         find(element).sendKeys(text);
     }
+
     protected  void click(By element){
         find(element).click();
     }
@@ -56,5 +57,11 @@ public class BasePageObject<T> {
 
     }
 
+    public String getTitle() {
+        return driver.getTitle();
+    }
 
+    protected String getText(By element){
+        return find(element).getText();
+    }
 }

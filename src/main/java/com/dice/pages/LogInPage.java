@@ -12,11 +12,10 @@ import org.openqa.selenium.WebDriver;
         private static  final String URL = "https://www.dice.com/dashboard/login";
 
         private By emailField = By.id("email");
-        private By passwordField = By.id("password");
-        private By signInButton = By.xpath("//buton[@type='submit']");
+        private By passwordField = By.xpath("//input[@id='password']");
+        private By signInButton = By.xpath("//button[@type='submit']");
 
     public LogInPage(WebDriver driver){
-
             super( driver);
         }
         public void OpenLoginPage(){
@@ -24,11 +23,13 @@ import org.openqa.selenium.WebDriver;
         }
 
         public  void    fillUpEmailAndPassword(String email, String password){
+            System.out.println("Filling up email and password");
             type(email, emailField);
             type(password, passwordField);
         }
 
         public ProfilePage pushSignInButton() {
+            System.out.println("clicking on sign in button");
             click (signInButton);
             return  new ProfilePage(driver);
 
