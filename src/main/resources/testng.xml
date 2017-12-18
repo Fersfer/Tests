@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="FirstTestsuite">
+    <test name="LogInTest">
+        <classes>
+            <class name="com.dice.LogInTest">
+                <methods>
+                    <exclude name="positiveLogInTest"></exclude>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+</suite>

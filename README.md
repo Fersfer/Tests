@@ -1,2 +1,2 @@
-# Tests1
+# Tests
 Ui Autotests
