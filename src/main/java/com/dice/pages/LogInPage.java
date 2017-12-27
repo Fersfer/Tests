@@ -3,6 +3,8 @@ package com.dice.pages;
 import com.dice.base.BasePageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import java.util.logging.Logger;
+
 
 /**
  * Created by user on 05/12/17.
@@ -16,23 +18,24 @@ import org.openqa.selenium.WebDriver;
         private By signInButton = By.xpath("//button[@type='submit']");
         private By errorMessage = By.xpath("//span[@data-automation-id='login-failure-help-message']");
 
-    public LogInPage(WebDriver driver){
-            super( driver);
+    public LogInPage(WebDriver driver, Logger log){
+
+        super( driver, log);
         }
         public void OpenLoginPage(){
             getPage(URL);
         }
 
         public  void    fillUpEmailAndPassword(String email, String password){
-            System.out.println("Filling up email and password");
+            log.info("Filling up email and password");
             type(email, emailField);
             type(password, passwordField);
         }
 
         public ProfilePage pushSignInButton() {
-            System.out.println("clicking on sign in button");
+            log.info("clicking on sign in button");
             click (signInButton);
-            return  new ProfilePage(driver);
+            return  new ProfilePage(driver, log);
 
         }
 

@@ -3,6 +3,7 @@ package com.dice.pages;
 import com.dice.base.BasePageObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import java.util.logging.Logger;
 
 /**
  * Created by user on 06/12/17.
@@ -13,13 +14,13 @@ public class ProfilePage extends BasePageObject<ProfilePage> {
     private By advancedSearchButton = By.id("advanced-search-link");
     private By profileContactsNameText = By.xpath("//h1[@class='profile-contact-name']");
 
-    public ProfilePage(WebDriver driver) {
+    public ProfilePage(WebDriver driver, Logger log) {
 
-        super(driver);
+        super(driver, log);
     }
 
     public void waitForProfilePageToLoad(){
-        System.out.println("waiting For Profile Page To Load");
+        log.info("waiting For Profile Page To Load");
         waitForVisibilityOf(editProfileButton);
         waitForVisibilityOf(advancedSearchButton, 10);
     }

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import java.util.logging.Logger;
 
 /**
  * Created by user on 05/12/17.
@@ -14,10 +15,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BasePageObject<T> {
     protected  WebDriver driver;
     protected WebDriverWait wait;
+    protected Logger log;
 
 
-    protected  BasePageObject(WebDriver driver) {
+    protected  BasePageObject(WebDriver driver, Logger log) {
         this.driver = driver;
+        this.log = log;
         wait = new WebDriverWait(driver, 40);
     }
 

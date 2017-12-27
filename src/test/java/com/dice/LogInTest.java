@@ -1,19 +1,21 @@
 package com.dice;
 
 import com.dice.base.BaseTest;
+import com.dice.base.CsvDataProvider;
 import com.dice.pages.LogInPage;
 import com.dice.pages.ProfilePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import java.util.Map;
 
 /**
  * Created by user on 05/12/17.
  */
 public class LogInTest extends BaseTest {
 
-    @Test
+    @Test(priority = 1, groups = {"positive" })
     public void PositiveLogInTest() throws InterruptedException {
-        LogInPage logInPage = new LogInPage(driver);
+        LogInPage logInPage = new LogInPage(driver, log);
 
         String expectedPageTitle = "Seeker Dashboard - Profile";
         String CorrectProfileName = "Alex Test";
@@ -25,7 +27,7 @@ public class LogInTest extends BaseTest {
         ProfilePage profilePage = logInPage.pushSignInButton();
         profilePage.waitForProfilePageToLoad();
 
-        System.out.println("Verifications");
+        log.info("Verifications");
         String actualTitle = profilePage.getTitle();
 
         Assert.assertTrue(expectedPageTitle.equals(actualTitle),
@@ -35,14 +37,21 @@ public class LogInTest extends BaseTest {
 
     }
 
-    @Test
-    public void negativeLogInTest() throws InterruptedException {
+    @Test(dataProvider ="CsvDataProvider", dataProviderClass = CsvDataProvider.class, priority = 2, groups = {"negative", "broken" })
+    public void negativeLogInTest(Map<String, String> testData) throws InterruptedException {
         String expectedErrorMessage = "Email and/or password incorrect.";
-        LogInPage logInPage = new LogInPage(driver);
+        String testNumber = testData.get("no");
+        String email = testData.get("email");
+        String password = testData.get("password");
+        String description = testData.get("description");
+
+        log.info("Test No #" + testNumber + "for" + description + "Where\nEmail: " + email + "\nPassword: " + password);
+
+        LogInPage logInPage = new LogInPage(driver, log);
 
         logInPage.OpenLoginPage();
 
-        logInPage.fillUpEmailAndPassword("incorrect@mailinator.com", "Qwerty123");
+        logInPage.fillUpEmailAndPassword("email", "password");
 
         logInPage.pushSignInButton();
 
